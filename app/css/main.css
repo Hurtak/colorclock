@@ -56,11 +56,13 @@ html {
   min-width: 32px;
   width: 10vmin;
   height: auto;
-  transition: .3s transform;
+  transition: .3s all;
+  opacity: 0.15;
 }
 
 
 .footer img:hover {
-  transform: translateY(-10%);
+  transform: translateY(-5%);
   cursor: pointer;
+  opacity: 1;
 }

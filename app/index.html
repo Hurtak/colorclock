@@ -7,28 +7,23 @@
     <title>Color Clock</title>
 
     <!-- build:css css/main.css -->
-    <link rel="stylesheet" href="../bower_components/normalize.css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="components/normalize.css/normalize.css">
+      <link rel="stylesheet" href="css/main.css">
     <!-- endbuild -->
+
+    <link href='http://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>
 
   </head>
   <body>
-    <div>
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li>
-      </ul>
+    <div class="wrapper" id="wrapper">
+      <div class="clock-wrapper">
+        <div id="clock-digital">13:00:00</div>
+        <div id="clock-hex">ff:ff:ff</div>
+      </div>
     </div>
 
-    <!-- build:js js/vendor.js -->
-    <!-- bower:js -->
-
-    <!-- endbower -->
-    <!-- endbuild -->
-
     <!-- build:js js/main.js -->
-    <script src="js/main.js"></script>
+      <script src="js/main.js"></script>
     <!-- endbuild -->
   </body>
 </html>

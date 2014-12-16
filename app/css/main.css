@@ -1,0 +1,41 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body,
+html {
+  height: 100%
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    text-align: center;
+}
+
+.wrapper:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.clock-wrapper {
+    color: #F8F8F8;
+    display: inline-block;
+    vertical-align: middle;
+
+    font-family: 'Luckiest Guy', 'Comic Sans MS', Serif;
+    font-size: 10vmax;
+
+    text-shadow:
+      6px  6px 0 #000,
+     -2px -2px 0 #000,
+      2px -2px 0 #000,
+     -2px  2px 0 #000,
+      2px  2px 0 #000;
+}

@@ -1,6 +1,6 @@
 {
   "name": "colorclock",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Clock displaying colors based on current time",
   "main": "gulpfile.js",
   "dependencies": {

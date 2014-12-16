@@ -39,3 +39,27 @@ html {
      -2px  2px 0 #000,
       2px  2px 0 #000;
 }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+
+.footer img {
+  float: right;
+  margin-right: 1.2%;
+  margin-bottom: 1.2%;
+  max-width: 64px;
+  min-width: 32px;
+  width: 10vmin;
+  height: auto;
+  transition: .3s transform;
+}
+
+
+.footer img:hover {
+  transform: translateY(-10%);
+  cursor: pointer;
+}

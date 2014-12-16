@@ -17,7 +17,7 @@ var clock = (function() {
   }
 
   function timeToHex(time, max) {
-    time = time * 0xFF / max;
+    time = time * 255 / max;
     time = Math.round(time).toString(16);
     time = addLeadingZero(time).toUpperCase();
 
@@ -41,7 +41,7 @@ var clock = (function() {
       ];
 
       background.style.backgroundColor = '#' + color.join('');
-      clockHex.innerHTML = color.join(':');
+      clockHex.innerHTML = '#' + color.join(':');
   }
 
   function init() {

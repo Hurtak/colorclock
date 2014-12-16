@@ -52,10 +52,6 @@
     body.style.backgroundColor = '#' + color.join('');
     clockHex.innerHTML = color.join(':');
 
-
-
-
   }, 1000);
-
 
 }());

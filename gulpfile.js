@@ -28,10 +28,9 @@ var paths = {
 var options = {
   autoprefixer: {
     browsers: [
-      '> 1%',
+      '> 2%',
       'last 2 versions',
-      'Firefox ESR',
-      'ie >= 8'
+      'ie >= 9'
     ],
     cascade: false
   },
@@ -47,8 +46,7 @@ var options = {
   gulp.task('lintjs', function() {
     gulp.src(paths.app.js)
       .pipe($.jshint())
-      .pipe($.jshint.reporter('jshint-stylish'))
-      .pipe($.jshint.reporter('fail'));
+      .pipe($.jshint.reporter('jshint-stylish'));
   });
 
   // css

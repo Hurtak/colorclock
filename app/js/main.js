@@ -1,5 +1,3 @@
-/*jshint devel: true */
-
 var clock = (function() {
   'use strict';
 
@@ -56,4 +54,3 @@ var clock = (function() {
 }());
 
 clock.init();
-

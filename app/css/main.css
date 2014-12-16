@@ -29,15 +29,16 @@ html {
     display: inline-block;
     vertical-align: middle;
 
-    font-family: 'Luckiest Guy', 'Comic Sans MS', Serif;
+    font-family: 'PT Mono' ,'Consolas', Serif;
     font-size: 10vmax;
+    font-weight: 600;
 
     text-shadow:
-      6px  6px 0 #000,
-     -2px -2px 0 #000,
-      2px -2px 0 #000,
-     -2px  2px 0 #000,
-      2px  2px 0 #000;
+      9px  9px 0 #000,
+     -3px -3px 0 #000,
+      3px -3px 0 #000,
+     -3px  3px 0 #000,
+      3px  3px 0 #000;
 }
 
 .footer {

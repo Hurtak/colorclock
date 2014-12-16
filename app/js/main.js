@@ -8,6 +8,7 @@
     if (time.length < 2) {
       time = '0' + time;
     }
+
     return time;
   }
 

@@ -20,7 +20,8 @@ var paths = {
     html: appPath + '/**/*.{html,htm}'
   },
   dist: {
-    fonts: distPath + '/fonts'
+    fonts: distPath + '/fonts',
+    img: distPath + '/img'
   },
 };
 
@@ -37,6 +38,13 @@ var options = {
   htmlmin: {
     removeComments: true,
     collapseWhitespace: true
+  },
+  imagemin: {
+    progressive: true,
+    svgoPlugins: [
+      {removeViewBox: false}
+    ],
+    use: []
   }
 };
 
@@ -44,14 +52,14 @@ var options = {
 
   // js
   gulp.task('lintjs', function() {
-    gulp.src(paths.app.js)
+    return gulp.src(paths.app.js)
       .pipe($.jshint())
       .pipe($.jshint.reporter('jshint-stylish'));
   });
 
   // css
   gulp.task('lintcss', function() {
-    gulp.src(paths.app.css)
+    return gulp.src(paths.app.css)
       .pipe($.csslint())
       .pipe($.csslint.reporter());
   });
@@ -66,15 +74,9 @@ var options = {
 
 // compile
 
-  gulp.task('fonts', function () {
-    gulp.src(paths.app.fonts)
-      .pipe($.flatten())
-      .pipe(gulp.dest(paths.dist.fonts));
-  });
-
   gulp.task('compile', function () {
     var assets = $.useref.assets();
-    gulp.src(paths.app.html)
+    return gulp.src(paths.app.html)
       .pipe(assets)
       .pipe($.if('*.js', $.uglify()))
       .pipe($.if('*.css', $.autoprefixer(options.autoprefixer)))
@@ -87,10 +89,22 @@ var options = {
       .pipe(gulp.dest(distPath));
   });
 
+  gulp.task('img', function () {
+      return gulp.src(paths.app.img)
+          .pipe($.imagemin(options.imagemin))
+          .pipe(gulp.dest(paths.dist.img));
+  });
+
+  gulp.task('fonts', function () {
+    return gulp.src(paths.app.fonts)
+      .pipe($.flatten())
+      .pipe(gulp.dest(paths.dist.fonts));
+  });
+
 // Browser sync
 
   gulp.task('browser-sync', function() {
-    browserSync({
+    return browserSync({
       server: {
         baseDir: distPath,
         index: 'index.html'
@@ -100,7 +114,7 @@ var options = {
   });
 
   gulp.task('browser-sync-dev', function() {
-    browserSync({
+    return browserSync({
       server: {
         baseDir: appPath,
         index: 'index.html'
@@ -112,7 +126,7 @@ var options = {
 // Main gulp tasks
 
   // builds all files and runs from dist directory
-  gulp.task('default', ['lintjs', 'fonts', 'compile', 'browser-sync']);
+  gulp.task('default', ['lintjs', 'compile', 'img', 'fonts', 'browser-sync']);
 
   // skips building phase and runs from dist directory
   gulp.task('run', ['browser-sync']);

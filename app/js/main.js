@@ -1,7 +1,11 @@
 /*jshint devel: true */
 
-(function() {
+var clock = (function() {
   'use strict';
+
+  var clockDigital = document.getElementById('clock-digital');
+  var clockHex = document.getElementById('clock-hex');
+  var background = document.getElementById('wrapper');
 
   function addLeadingZero(time) {
     time = time.toString();
@@ -12,47 +16,44 @@
     return time;
   }
 
-  function linearConversion(number, oldMin, oldMax, newMin, newMax) {
-    var oldRange = oldMax - oldMin;
-    if (oldRange === 0) {
-      return newMax;
-    }
-
-    var newRange = newMax - newMin;
-    return (((number - oldMin) * newRange) / oldRange) + newMin;
-  }
-
   function timeToHex(time, max) {
-    time = linearConversion(time, 0, max, 0, 0xFF);
+    time = time * 0xFF / max;
     time = Math.round(time).toString(16);
     time = addLeadingZero(time).toUpperCase();
+
     return time;
   }
 
-  var clockDigital = document.getElementById('clock-digital');
-  var clockHex = document.getElementById('clock-hex');
+  function tick() {
+      var date = new Date();
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var seconds = date.getSeconds();
 
-  var body = document.getElementById('wrapper');
+      clockDigital.innerHTML = addLeadingZero(hours) + ':' +
+                               addLeadingZero(minutes) + ':' +
+                               addLeadingZero(seconds);
 
-  setInterval(function(){
-    var date = new Date();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
+      var color = [
+        timeToHex(hours, 23),
+        timeToHex(minutes, 59),
+        timeToHex(seconds, 59)
+      ];
 
-    clockDigital.innerHTML = addLeadingZero(hours) + ':' +
-                             addLeadingZero(minutes) + ':' +
-                             addLeadingZero(seconds);
+      background.style.backgroundColor = '#' + color.join('');
+      clockHex.innerHTML = color.join(':');
+  }
 
-    var color = [
-      timeToHex(hours, 23),
-      timeToHex(minutes, 59),
-      timeToHex(seconds, 59)
-    ];
+  function init() {
+    tick();
+    setInterval(tick, 1000);
+  }
 
-    body.style.backgroundColor = '#' + color.join('');
-    clockHex.innerHTML = color.join(':');
-
-  }, 1000);
+  return {
+    init: init
+  };
 
 }());
+
+clock.init();
+
